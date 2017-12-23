@@ -1,0 +1,24 @@
+      .title{
+
+            background-color: dodgerblue;
+            color: white;
+          }
+          .save {
+            float: right;
+          }
+
+        .toprow{
+
+      background-image: url("bg.jpg");
+      background-size:cover;
+      color: white;
+      text-shadow: 4px 4px black;
+      border: 4px solid gray;
+     }
+
+     .res {
+
+      border: 2px solid gray;
+      margin-bottom: 10px;
+     }
+   
