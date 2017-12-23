@@ -156,6 +156,8 @@ app.get("/articles", function(req, res) {
 
 // Route for grabbing a specific Article by id, populate it with it's note
 app.get("/articles/:id", function(req, res) {
+  console.log(req.params.id);
+
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.Article
     .findOne({ _id: req.params.id })
@@ -163,6 +165,8 @@ app.get("/articles/:id", function(req, res) {
     .populate("note")
     .then(function(dbArticle) {
       // If we were able to successfully find an Article with the given id, send it back to the client
+     console.log(dbArticle)
+
       res.json(dbArticle);
     })
     .catch(function(err) {
@@ -172,17 +176,26 @@ app.get("/articles/:id", function(req, res) {
 });
 
 // Route for saving/updating an Article's associated Note
-app.post("/articles/:id", function(req, res) {
+app.post("/save/:id", function(req, res) {
+
+  console.log(req.body);
   // Create a new note and pass the req.body to the entry
   db.Note
-    .create(req.body)
+    .create({
+
+      body: req.body.info.body}
+
+
+      )
     .then(function(dbNote) {
       // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true }).populate("note")
     })
     .then(function(dbArticle) {
+        console.log(dbArticle);
+        // console.log(dbNote);
       // If we were able to successfully update an Article, send it back to the client
       res.json(dbArticle);
     })

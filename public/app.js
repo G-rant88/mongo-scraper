@@ -1,3 +1,16 @@
+  var noteflag = false;
+
+
+
+ $(document).ready(function() {
+
+  $(".notesHere").hide();
+  $(".delNote").hide();
+  $(".bodyHere").hide();
+
+
+});
+
 $(document).on("click", ".save", function() {
 
 var title = $(this).attr("data-title");
@@ -45,5 +58,76 @@ $.post("/delete", {info}, function(done){
 
 location.reload();
 })
+
+});
+
+
+$(document).on("click", ".note", function() {
+
+
+
+  noteflag = !noteflag
+
+  if (noteflag === false) {
+
+  $(".notesHere").hide();
+  $(".bodyHere").hide();
+  $(".delNote").hide();
+  return false;
+
+  }
+ 
+
+var ids = $(this).attr("data-id");
+
+
+console.log(ids);
+
+$.get("/articles/"+ids, function(done){
+
+if (noteflag === true) {
+
+ $(".bodyHere").show();
+  $(".delNote").show();
+$("#"+ ids).show();
+
+  }
+   
+  
+ 
+
+  });
+
+});
+
+
+$(".saveNote").on("click", function(event) {
+
+
+var ids = $(this).attr("data-id");
+var body = $(".notey").val().trim();
+
+console.log(ids);
+
+var info = {
+
+  id: ids,
+  body: body
+}
+
+
+$.post("/save/"+ids, {info}, function(done){
+  Materialize.toast('Note Saved!', 4000);
+
+ var bodyflag = true;
+  console.log(done);
+
+$(".bodyHere").show();
+$("#print"+done._id).empty();
+$("#print"+done._id).prepend(done.note.body)
+$(".delNote").show();
+
+
+  });
 
 });

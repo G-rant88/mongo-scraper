@@ -1,4 +1,3 @@
-
     <div class="row">
     <div class="col s12">
       <nav>
@@ -24,12 +23,27 @@
       {{#each dbArticle}}
       <div class="col s12 res hoverable">
         
-        <h4 class="title">{{title}} <button class="btn note" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Note</button> <button class="btn red delete" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Delete</button></h4>
+        <h4 class="title">{{title}} <button class="btn note" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}" data-id="{{_id}}">Note</button> <button class="btn red delete" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Delete</button></h4>
         <P class="sum">{{sum}}</P>
         <p><a class="link" href="{{link}}">{{link}}</a></p>
 
+<div class="notesHere" id="{{_id}}">
+      <br>
+      <ul>
+       <p class="delNote">Note: <li class="bodyHere" id="print{{_id}}"></li><a class="btn red delNote right">Delete Note</a></p>
+      </ul>
+<form id="noteBody" class="input-field">
+  <div>
+  <i class="material-icons prefix">create</i>
+<textarea class="materialize-textarea notey" name="body" type="text"></textarea>
+<label for="icon_prefix2">Note</label>
 </div>
-
+</form>
+    <div>
+      <a class="btn cyan saveNote" data-id="{{_id}}">Save</a>
+    </div>  
+</div>
+</div>
 
 {{/each}}
 </div>

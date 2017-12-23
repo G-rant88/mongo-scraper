@@ -22,4 +22,21 @@
       border: 2px solid gray;
       margin-bottom: 10px;
      }
-   
+
+     .notesHere{
+
+      margin-bottom: 10px;
+     }
+
+     .bodyHere{
+
+      font-size: 20px;
+      font-weight: bold;
+      border: 2px solid gray;
+      padding: 8px;
+
+     }
+   #noteBody{
+
+    margin-top: 25px;
+   }
