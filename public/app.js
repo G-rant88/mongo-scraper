@@ -11,6 +11,22 @@ var info = {
   link: link
 }
 
-$.post("/save", {info})
+$.post("/save", {info}, function(done){
+
+console.log(done);
+
+if(done === ""){
+
+	Materialize.toast('Article Saved!', 4000);
+
+}
+
+else{
+
+Materialize.toast('ERROR: Article Already Saved in db!', 4000);
+Materialize.toast('Try Another Article!', 4000);
+
+}
+})
 
 });

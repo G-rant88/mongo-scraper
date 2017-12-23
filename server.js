@@ -103,11 +103,18 @@ app.post("/save", function(req, res) {
       sum: req.body.info.sum,
       link: req.body.info.link
 
-      }), function(result){
+      }).then(function(result){
 
-        res.end();
-      }
-     
+ res.end();
+
+
+       }).catch(function(err) {
+      // If an error occurred, send it to the client
+      
+      res.json(err);
+
+    });
+
     });
 
 
