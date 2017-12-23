@@ -30,3 +30,20 @@ Materialize.toast('Try Another Article!', 4000);
 })
 
 });
+
+
+$(document).on("click", ".delete", function() {
+
+var title = $(this).attr("data-title");
+
+var info = {
+
+  title: title
+}
+
+$.post("/delete", {info}, function(done){
+
+location.reload();
+})
+
+});

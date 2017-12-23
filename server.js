@@ -117,6 +117,29 @@ app.post("/save", function(req, res) {
 
     });
 
+app.post("/delete", function(req, res) {
+
+  console.log(req.body.info.title);
+
+      db.Article
+      .remove({
+
+      title: req.body.info.title
+
+      }).then(function(result){
+
+ res.end();
+
+
+       }).catch(function(err) {
+      // If an error occurred, send it to the client
+      
+      res.json(err);
+
+    });
+
+    });
+
 
 // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {

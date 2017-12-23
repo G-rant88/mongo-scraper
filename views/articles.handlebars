@@ -6,8 +6,8 @@
       <a href="#!" class="brand-logo center">The Mongo Super Scraper 3000</a>
       <ul class="left hide-on-med-and-down">
        
-        <li><a href="/articles">Saved Articles</a></li>
-        <li class="active"><a href="/">Home</a></li>
+        <li class="active"><a href="/articles">Saved Articles</a></li>
+        <li ><a href="/">Home</a></li>
         <!-- <li><a href="/scrape" class="clicky btn pulse">Scrape!!!</a></li> -->
       </ul>
     </div>
@@ -24,9 +24,9 @@
       {{#each dbArticle}}
       <div class="col s12 res hoverable">
         
-        <h4 class="title">{{title}} <button class="btn note" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Note</button></h4>
+        <h4 class="title">{{title}} <button class="btn note" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Note</button> <button class="btn red delete" data-title="{{title}}" data-sum="{{sum}}" data-link="{{link}}">Delete</button></h4>
         <P class="sum">{{sum}}</P>
-        <a class="link" href="{{link}}">{{link}}</a>
+        <p><a class="link" href="{{link}}">{{link}}</a></p>
 
 </div>
 
