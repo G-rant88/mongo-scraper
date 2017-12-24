@@ -205,6 +205,30 @@ app.post("/save/:id", function(req, res) {
     });
 });
 
+
+app.post("/del/:id", function(req, res) {
+
+  console.log(req.params.id)
+
+      db.Note
+      .remove({
+
+      _id: req.params.id
+
+      }).then(function(result){
+
+ res.end();
+
+
+       }).catch(function(err) {
+      // If an error occurred, send it to the client
+      
+      res.json(err);
+
+    });
+
+    });
+
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");

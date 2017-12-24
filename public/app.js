@@ -86,7 +86,7 @@ $.get("/articles/"+ids, function(done){
    console.log(done._id);
 
 
-    if (done.note === undefined){
+    if (done.note === undefined || done.note === null){
 
 $("#del"+ids).hide();
 $("#print"+ids).hide();
@@ -138,21 +138,25 @@ $.post("/save/"+ids, {info}, function(done){
 
 $(".bodyHere").show();
 $("#print"+done._id).empty();
-$("#print"+done._id).prepend(done.note.body)
+$("#print"+done._id).prepend(done.note.body);
+$("#del"+done._id).attr("data-id", done.note._id);
 $(".delNote").show();
+$("#del"+ids).show();
 
 
   });
 });
 
+
+
 $(".delClick").on("click", function(event) {
 
 
+var ids = $(this).attr("data-id");
 
 
 
-
-$.post("/del/"+ids, {info}, function(done){
+$.post("/del/"+ids, function(done){
 
     location.reload();
 
