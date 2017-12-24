@@ -98,6 +98,7 @@ return false;
 
 if (noteflag === true) {
 
+$(".delNote").show();
 $("#"+ ids).show();
 $("#del"+ids).show();
 $("#print"+ids).show();
@@ -136,6 +137,7 @@ $.post("/save/"+ids, {info}, function(done){
   console.log(done.note);
     console.log(done._id);
 
+$(".delNote").show();
 $(".bodyHere").show();
 $("#print"+done._id).empty();
 $("#print"+done._id).prepend(done.note.body);
