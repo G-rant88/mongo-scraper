@@ -64,37 +64,50 @@ location.reload();
 
 $(document).on("click", ".note", function() {
 
-
-
-  noteflag = !noteflag
-
-  if (noteflag === false) {
-
-  $(".notesHere").hide();
-  $(".bodyHere").hide();
-  $(".delNote").hide();
-  return false;
-
-  }
- 
-
 var ids = $(this).attr("data-id");
 
 
 console.log(ids);
 
+  noteflag = !noteflag
+
+  if (noteflag === false) {
+
+
+  $("#"+ ids).hide();
+  return false;
+
+  }
+ 
+
 $.get("/articles/"+ids, function(done){
+
+  // console.log(done.note.body);
+   console.log(done._id);
+
+
+    if (done.note === undefined){
+
+$("#del"+ids).hide();
+$("#print"+ids).hide();
+  $("#"+ ids).show();
+return false;
+   }
+
+
 
 if (noteflag === true) {
 
- $(".bodyHere").show();
-  $(".delNote").show();
 $("#"+ ids).show();
+$("#del"+ids).show();
+$("#print"+ids).show();
+$("#print"+done._id).empty();
+$("#print"+done._id).prepend(done.note.body)
 
   }
    
   
- 
+
 
   });
 
@@ -105,9 +118,10 @@ $(".saveNote").on("click", function(event) {
 
 
 var ids = $(this).attr("data-id");
-var body = $(".notey").val().trim();
+var body = $("#note"+ids).val().trim();
 
 console.log(ids);
+console.log(body);
 
 var info = {
 
@@ -119,13 +133,28 @@ var info = {
 $.post("/save/"+ids, {info}, function(done){
   Materialize.toast('Note Saved!', 4000);
 
- var bodyflag = true;
-  console.log(done);
+  console.log(done.note);
+    console.log(done._id);
 
 $(".bodyHere").show();
 $("#print"+done._id).empty();
 $("#print"+done._id).prepend(done.note.body)
 $(".delNote").show();
+
+
+  });
+});
+
+$(".delClick").on("click", function(event) {
+
+
+
+
+
+
+$.post("/del/"+ids, {info}, function(done){
+
+    location.reload();
 
 
   });

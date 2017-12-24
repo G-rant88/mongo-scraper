@@ -30,12 +30,12 @@
 <div class="notesHere" id="{{_id}}">
       <br>
       <ul>
-       <p class="delNote">Note: <li class="bodyHere" id="print{{_id}}"></li><a class="btn red delNote right">Delete Note</a></p>
+       <p class="delNote" id="del{{_id}}">Note: <li class="bodyHere" id="print{{_id}}"></li><a class="btn red delNote right delClick">Delete Note</a></p>
       </ul>
 <form id="noteBody" class="input-field">
   <div>
   <i class="material-icons prefix">create</i>
-<textarea class="materialize-textarea notey" name="body" type="text"></textarea>
+<textarea class="materialize-textarea" name="body" type="text" id=note{{_id}}></textarea>
 <label for="icon_prefix2">Note</label>
 </div>
 </form>
